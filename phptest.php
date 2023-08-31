@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Product Add</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        button 
+        {
+            font-size: 15px;
+            padding: 10px;
+            margin: 10px;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 1) 3px 3px;
+            cursor: pointer;
+        }
+        button .add:hover
+        {
+            background-color: grey;
+        }
+        h1 {
+            color: #000000;
+            font-weight: normal;
+        }
+        hr {
+            width: 100%;
+            border-top: 2px solid grey;
+        }
+        input {
+            width: 20%;
+            /*margin: 8px 0;*/
+            border: 2px solid grey;
+            margin: 10px;
+        }
+        input[type=text]:focus {
+            background-color: #CCCCFF;
+        }
+        input[type=number]:focus {
+            background-color: #CCCCFF;
+        }
+        select {
+            width: 20%;
+            /*padding: 10px 10px;*/
+            border: none;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+            margin: 10px;
+        }
+        span {
+            float: left;
+            width: 20%;
+            margin: 10px;
+            display: grid;
+        }
+        .head {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+        #btn-container
+        {
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+        }
+        .d-none {
+            display: none;
+        }
+        label {
+            color: Black;
+            margin-right: 40px;
+            /*display: block;*/
+            width: 100px;
+
+        }
+        #form-base {
+            margin-bottom: 40px;
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+
+        #foot {
+            margin-top: 40px;
+        }
+
+        #foot h4{
+            margin-top: 20px;
+            font-weight: normal;
+            display: flex;
+            justify-content: center;  
+            margin-bottom:20px;      
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <h1>Product Add</h1>
+        <form method="POST" id="product_form">
+            <div id="btn-container">
+            <button type="submit" name="add" id="add" class="delete-product-btn">SAVE</button>
+            <a href="index.php"><button type="button"id="add">CANCEL</button></a>
+            </div>
+    </div>
+            <hr>
+            <section id="form-base">
+                <span><label for="sku">SKU</label></span>
+                <input type="text" required name="sku" id="sku" placeholder="sku"><br>
+                <span><label for="name">Name</label></span>
+                <input type="text" required name="name" id="name" placeholder="name"><br>
+                <span><label for="price">Price ($)</label></span>
+                <input type="number" required name="price" id="price" placeholder="price" step=".01"><br><br>
+                <span><label for="#productType">Type Switcher</label></span>
+                <select name="select" id="productType" required onchange="displayChildren(this.value)">
+                    <option disabled selected value>--Select--</option>
+                    <option value="dvd" id="#DVD">DVD</option>
+                    <option value="book" id="#Book">Book</option>
+                    <option value="furn" id="#Furniture">Furniture</option>
+                </select><br><br>
+                <div id="furn">
+                    <input type="number" name="length" placeholder="Please provide length" step=".1" id="length" class="d-none">
+                    <input type="number" name="width" placeholder="Please provide width" step=".1" id="width" class="d-none">
+                    <input type="number" name="height" placeholder="Please provide height" step=".1" id="height" class="d-none">
+                </div>
+                <div id="dvd">
+                    <input type="number" id="size" name="size" placeholder="Please provide size" step=".01" class="d-none">
+                </div>
+                <div id="book">
+                    <input type="number" id="weight" name="weight" placeholder="Please provide weight" step=".01" class="d-none">
+                </div>
+            </section>
+        </form>
+    <section id="foot">
+        <hr><h4>Scandiweb Test assignment</h4>
+    </section>
+    <script src="test.js"></script>
+    <?php 
+        if(isset($_POST['add'])) {
+            echo $_POST['name'];
+        }
+    ?>
+</body>
+</html>
